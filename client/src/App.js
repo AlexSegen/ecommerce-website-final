@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+
 class App extends Component {
   state = { products: [] };
   componentDidMount() {
@@ -11,13 +12,14 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Products</h1>
-        <ul className="passwords">
           {this.state.products.map((product, index) => (
-            <li key={index}>
+            <div key={index}>
+              <img src={product.image} alt={product.name} />
+              <br/>
               {product.name} ${product.price}
-            </li>
+              <hr/>
+            </div>
           ))}
-        </ul>
       </div>
     );
   }
