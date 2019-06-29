@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "concurrently \"nodemon  --ignore './client/'  index.js\" \"cd client && yarn start\"",
+    "start": "node server/index.js",
+    "dev": "concurrently \"nodemon  --ignore './client/'  server/index.js\" \"cd client && yarn start\"",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "dependencies": {
