@@ -26,4 +26,4 @@ const products = [
   },
 ];
 app.get('/api/products', (req, res) => res.json(products));
-app.listen(port, () => console.log(`server at http://localhost:${port}`));
+app.listen(port, () => console.log(`Server: http://localhost:${port}`));
