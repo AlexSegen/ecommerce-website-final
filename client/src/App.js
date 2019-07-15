@@ -3,10 +3,10 @@ import "./App.css";
 
 class App extends Component {
   state = { products: [] };
-  componentDidMount() {
-    fetch("/api/products")
-      .then(res => res.json())
-      .then(products => this.setState({ products }));
+  async componentDidMount() {
+    const res = await fetch("/api/products");
+    const products = await res.json();
+    this.setState({ products });
   }
   render() {
     return (

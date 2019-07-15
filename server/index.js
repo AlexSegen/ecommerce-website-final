@@ -8,7 +8,7 @@ const devDbUrl =
   // eslint-disable-next-line max-len
   'mongodb+srv://myecommerceuser:KJLYxlpaMvkt9veR@cluster0-hshm6.mongodb.net/test?retryWrites=true&w=majority';
 const mongoDB = process.env.MONGODB_URI || devDbUrl;
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useCreateIndex: true });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

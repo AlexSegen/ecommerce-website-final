@@ -1,34 +1,60 @@
 import Product from '../models/product.model';
 
-const create = (req, res, next) => {
+const create = async (req, res, next) => {
   const product = new Product({
     name: req.body.name,
     price: req.body.price,
     image: req.body.image,
   });
-
-  product.save((err) => {
-    if (err) {
-      return next(err);
+  try {
+    const savedProduct = await product.save();
+    return res.status(201).send({ product: savedProduct, msg: 'Product Created successfully' });
+  } catch (err) {
+    if (err.name === 'MongoError' && err.code === 11000) {
+      return res.status(500).send({ product, msg: 'Product Is Duplicate' });
     }
-    return res.send('Product Created successfully');
-  });
-};
-const get = (req, res, next) => {
-  Product.findById(req.params.id, (err, product) => {
-    if (err) return next(err);
-    return res.send(product);
-  });
+    return next(err);
+  }
 };
 
-const getAll = (req, res, next) => {
-  Product.find({}, (err, product) => {
-    if (err) return next(err);
-    return res.send(product);
-  });
+const remove = async (req, res, next) => {
+  try {
+    const product = await Product.findByIdAndRemove(req.params.id);
+    if (!product) return res.status(500).send({ product, msg: 'Product Not Found' });
+    return res.send({ product, msg: 'Product Deleted successfully' });
+  } catch (err) {
+    return next(err);
+  }
 };
 
-const test = (req, res) => {
-  res.send('Greetings from the Test controller!');
+const update = async (req, res, next) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, { $set: req.body });
+    if (!product) return res.status(500).send({ product, msg: 'Product Not Found' });
+    return res.send({ product, msg: 'Product Updated successfully' });
+  } catch (err) {
+    if (err.name === 'MongoError' && err.code === 11000) {
+      return res.status(500).send({ product: { _id: req.params.id }, msg: 'Product Is Duplicate' });
+    }
+    return next(err);
+  }
 };
-export { test, getAll, get, create };
+
+const get = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    return res.send(product);
+  } catch (err) {
+    return next(err);
+  }
+};
+const getAll = async (req, res, next) => {
+  try {
+    const products = await Product.find({});
+    return res.send(products);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+export { getAll, get, create, update, remove };
