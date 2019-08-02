@@ -1,5 +1,12 @@
 # My Ecommerce Website
+
 Live Demo: [https://my-ecommerce-website.herokuapp.com/](https://my-ecommerce-website.herokuapp.com/)
+
+## Deploy
+
+```sh
+$ git push heroku
+```
 
 ## Part 01: Introduction
 
@@ -20,4 +27,3 @@ Live Demo: [https://my-ecommerce-website.herokuapp.com/](https://my-ecommerce-we
 ## Part 09: Shopping Basket
 
 ## Part 10: Manage Orders
-
