@@ -4,6 +4,14 @@ Live Demo: [https://my-ecommerce-website.herokuapp.com/](https://my-ecommerce-we
 
 ## Deploy
 
+Resolving node version 10.x...
+remote: Downloading and installing node 10.16.1...
+remote: Using default npm version: 6.9.0
+remote: Resolving yarn version 1.x...
+remote: Downloading and installing yarn (1.17.3)...
+remote: Installed yarn 1.17.3
+remote:
+
 ```sh
 $ git push heroku
 ```
