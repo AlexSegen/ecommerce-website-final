@@ -21,4 +21,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/products', product);
-app.listen(port, () => console.log(`Server: http://localhost:${port}`));
+app.listen(port, () => console.log(`Server : http://localhost:${port}`));
